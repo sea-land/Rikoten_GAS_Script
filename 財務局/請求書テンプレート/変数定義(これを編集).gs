@@ -23,6 +23,7 @@ const CELL_MAPPING = {
   ad5count: "Q", // ad5
   folderUrl: "A3", // フォルダのURL
   issueDate: "A7", // 発行日
+  string: "A11",   // 中間文字
 };
 
 // テンプレートのセル
@@ -44,4 +45,4 @@ const TEMPLATE_CELLS = {
 };
 
 // ファイル名のフォーマット
-const FILE_NAME_FORMAT = "{issueNumber}_第70回理工展報告書_{companyName}";
+const FILE_NAME_FORMAT = "{issueNumber}_{string}_{companyName}";

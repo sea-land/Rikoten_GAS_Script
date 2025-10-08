@@ -1,7 +1,7 @@
 /**
  * 処理開始の開始点
  */
-function copyTemplateSheets(startRow = 4, endRow = 50, chunkSize = 20) {
+function copyTemplateSheets(startRow = 4, endRow = 50, chunkSize = 10) {
   deleteAllTriggers();
   logToSheet("処理を開始します...");
   processChunk(startRow, endRow, chunkSize);
@@ -91,7 +91,9 @@ function fillTemplateSheets(data) {
  * 新しいスプレッドシートを作成し、テンプレートシートをコピーしてPDFに変換する。
  */
 function createPDF(data) {
-  const fileName = FILE_NAME_FORMAT.replace("{issueNumber}", data.issueNumber).replace("{companyName}", data.companyName) + ".pdf";
+  const stringValue = executionSheet.getRange(CELL_MAPPING.string).getValue();
+  const fileName = FILE_NAME_FORMAT.replace("{issueNumber}", data.issueNumber).replace("{string}", stringValue).replace("{companyName}", data.companyName) + ".pdf";
+
   const newSpreadsheet = SpreadsheetApp.create(fileName);
   reportSheet1.copyTo(newSpreadsheet).setName(reportSheet1.getName());
   reportSheet2.copyTo(newSpreadsheet).setName(reportSheet2.getName());
